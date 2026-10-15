@@ -3,6 +3,7 @@ package com.springboot.helpdesk.utility;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Base64;
@@ -16,7 +17,8 @@ public class JwtUtility {
 
     // we can encode the username with tools but not the password without this secret key ,
     // so this key is very imp and secured by devops engineer in vault
-    private String SECRET_KEY = "hhjdsyuwtyskfhsdfjhsjfhsdjfh";
+    @Value("${jwt.secret}")
+    private String SECRET_KEY ;
 
     // Method to generate a JWT token for the given username
     public String generateToken(String username) { //We use this
